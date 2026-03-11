@@ -17,8 +17,8 @@ fastapi-mail==1.4.1
 groq==0.5.0
 
 
-pip install fastapi==0.111.0
-pip install uvicorn==0.29.0
+#pip install fastapi==0.111.0
+#pip install uvicorn==0.29.0
 pip install sqlalchemy==2.0.30
 pip install pymysql==1.1.0
 pip install python-jose[cryptography]==3.3.0
