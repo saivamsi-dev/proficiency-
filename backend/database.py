@@ -4,8 +4,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-
-DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:root%40123@localhost/grammarai")
+DATABASE_URL = "mysql+pymysql://root:root@localhost/proficiency"
 
 engine = create_engine(
     DATABASE_URL,

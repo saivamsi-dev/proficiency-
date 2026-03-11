@@ -21,12 +21,21 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 bearer_scheme = HTTPBearer()
 
 
+# def hash_password(password: str) -> str:
+#     return pwd_context.hash(password[:72])
+
+# def verify_password(plain: str, hashed: str) -> bool:
+#     return pwd_context.verify(plain[:72], hashed)
+
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password[:72])
+    # bcrypt supports max 72 bytes
+    password = password.encode("utf-8")[:72].decode("utf-8", "ignore")
+    return pwd_context.hash(password)
+
 
 def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain[:72], hashed)
-
+    plain = plain.encode("utf-8")[:72].decode("utf-8", "ignore")
+    return pwd_context.verify(plain, hashed)
 
 def create_access_token(user_id: int) -> str:
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
